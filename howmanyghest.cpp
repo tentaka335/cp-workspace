@@ -17,6 +17,6 @@ int main () {
     for (ll i=0; i<Q; i++) {
         ll L,R;
         cin >> L >> R;
-        cout << sum[R]-sum[L-1] << endl;
+        cout << sum[R]-sum[L-1] << "\n";
     }
 }
