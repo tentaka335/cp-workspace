@@ -1,0 +1,11 @@
+# C++のコンパイル済み実行ファイル
+*.exe
+*.out
+a.out
+
+# Pythonのキャッシュ
+__pycache__/
+*.pyc
+
+# OSのシステムファイル
+.DS_Store

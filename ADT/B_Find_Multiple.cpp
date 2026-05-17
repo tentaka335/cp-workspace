@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+#define rep(i, n) for(ll i = 0; i < (n); i++)
+#define all(v) (v).begin(), (v).end()
+template<class T> bool chmin(T& a, T b) { if(a > b) { a = b; return true; } return false; }
+template<class T> bool chmax(T& a, T b) { if(a < b) { a = b; return true; } return false; }
+const ll inf = 1e18;
+const ll MOD = 1e9 + 7;
+
+int main() {
+    cin.tie(nullptr);
+    ios_base::sync_with_stdio(false);
+    
+    ll a, b, c;
+    cin >> a >> b >> c;
+    for(ll i = a;i<=b;i++) {
+        if(i%c==0) {
+            cout << i << "\n";
+            return 0;
+        }
+    }
+    cout << -1;
+    return 0;
+}

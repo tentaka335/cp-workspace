@@ -1,0 +1,143 @@
+{
+	"競プロテンプレート": {
+		"scope": "cpp",
+		"prefix": "kyoprotemp",
+		"body": [
+			"#include <bits/stdc++.h>",
+			"#include <atcoder/all>",
+			"using namespace std;",
+			"using ll = long long;",
+			"using llll = __int128_t;",
+			"using namespace atcoder;",
+			"using Pll = pair<ll,ll>;",
+			"using Graph = vector<vector<ll>>;",
+			"#define rep(i, n) for(ll i = 0; i < (n); i++)",
+			"#define all(v) (v).begin(), (v).end()",
+			"template<class T> bool chmin(T& a, T b) { if(a > b) { a = b; return true; } return false; }",
+			"template<class T> bool chmax(T& a, T b) { if(a < b) { a = b; return true; } return false; }",
+			"const ll inf = 1e18;",
+			"const ll MOD = 1e9 + 7;",
+			"const ll MOD2 = 998244353;",
+			"int main() {",
+			"    cin.tie(nullptr);",
+			"    ios_base::sync_with_stdio(false);",
+			"    ",
+			"    $0",
+			"    ",
+			"    return 0;",
+			"}"
+		],
+		"description": "競プロ用フルテンプレート"
+	},
+	"rep": {
+		"scope": "cpp",
+		"prefix": "rep",
+		"body": "rep(${1:i}, ${2:n}) {\n    $0\n}",
+		"description": "rep(i, n) ループ"
+	},
+	"chmin": {
+		"scope": "cpp",
+		"prefix": "chmin",
+		"body": "chmin(${1:a}, ${2:b});",
+		"description": "chmin(a, b)"
+	},
+	"chmax": {
+		"scope": "cpp",
+		"prefix": "chmax",
+		"body": "chmax(${1:a}, ${2:b});",
+		"description": "chmax(a, b)"
+	},
+	"debug": {
+		"scope": "cpp",
+		"prefix": "debug",
+		"body": "cerr << \"${1:var}\" << \" = \" << ${1:var} << endl;",
+		"description": "デバッグ出力"
+	},
+	"vector2d": {
+		"scope": "cpp",
+		"prefix": "vec2d",
+		"body": "vector ${1:v}(${2:n}, vector<${3:ll}>(${4:m}, ${5:0}));",
+		"description": "2次元vector"
+	},
+	"vector3d": {
+		"scope": "cpp",
+		"prefix": "vec3d",
+		"body": "vector ${1:v}(${2:n}, vector(${3:m}, vector<${4:ll}>(${5:k}, ${6:0})));",
+		"description": "3次元vector"
+	},
+	"dx dy": {
+		"scope": "cpp",
+		"prefix": "dxdy",
+		"body": [
+			"const ll dx[] = {1, -1, 0, 0};",
+			"const ll dy[] = {0, 0, 1, -1};"
+		],
+		"description": "4方向 dx, dy"
+	},
+	"dx dy 8方向": {
+		"scope": "cpp",
+		"prefix": "dxdy8",
+		"body": [
+			"const ll dx[] = {1, -1, 0, 0, 1, 1, -1, -1};",
+			"const ll dy[] = {0, 0, 1, -1, 1, -1, 1, -1};"
+		],
+		"description": "8方向 dx, dy"
+	},
+	"BFS": {
+		"scope": "cpp",
+		"prefix": "bfs",
+		"body": [
+			"vector<ll> dist(${1:n}, inf);",
+			"queue<ll> Q;",
+			"dist[${2:start}] = 0;",
+			"Q.push(${2:start});",
+			"while(!Q.empty()) {",
+			"    ll v = Q.front(); Q.pop();",
+			"    for(auto nv : ${3:G}[v]) {",
+			"        if(dist[nv] == inf) {",
+			"            dist[nv] = dist[v] + 1;",
+			"            Q.push(nv);",
+			"        }",
+			"    }",
+			"}"
+		],
+		"description": "BFSテンプレート"
+	},
+	"グリッドBFS": {
+		"scope": "cpp",
+		"prefix": "gridbfs",
+		"body": [
+			"const ll dx[] = {1, -1, 0, 0};",
+			"const ll dy[] = {0, 0, 1, -1};",
+			"vector dist(${1:h}, vector<ll>(${2:w}, inf));",
+			"queue<pair<ll,ll>> Q;",
+			"dist[${3:sx}][${4:sy}] = 0;",
+			"Q.push({${3:sx}, ${4:sy}});",
+			"while(!Q.empty()) {",
+			"    auto [x, y] = Q.front(); Q.pop();",
+			"    for(ll d = 0; d < 4; d++) {",
+			"        ll nx = x + dx[d], ny = y + dy[d];",
+			"        if(0 <= nx && nx < ${1:h} && 0 <= ny && ny < ${2:w}) {",
+			"            if(${5:S}[nx][ny] != '#' && dist[nx][ny] == inf) {",
+			"                dist[nx][ny] = dist[x][y] + 1;",
+			"                Q.push({nx, ny});",
+			"            }",
+			"        }",
+			"    }",
+			"}"
+		],
+		"description": "グリッドBFSテンプレート"
+	},
+	"MOD": {
+		"scope": "cpp",
+		"prefix": "mod",
+		"body": "const ll MOD = 1e9 + 7;",
+		"description": "10^9+7"
+	},
+	"MOD2": {
+		"scope": "cpp",
+		"prefix": "mod2",
+		"body": "const ll MOD = 998244353;",
+		"description": "998244353 (NTT用)"
+	}
+}
