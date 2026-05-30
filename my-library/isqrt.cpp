@@ -10,6 +10,4 @@ long long isqrt(long long n) {
     return m;
 }
 
-int main() {
-    cout << isqrt(1e18);
-}
+
