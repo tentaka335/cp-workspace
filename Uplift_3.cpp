@@ -94,8 +94,8 @@ void solve(){
  
 }
 void solve2()  {
-    ll n,q;
-    cin >> n >> q;
+    ll n,q,w;
+    cin >> n >> q >> w;
     
 }
 int main() {
