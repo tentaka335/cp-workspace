@@ -95,5 +95,6 @@
         "text_encoding": "cpp",
         "the first problem": "cpp"
     },
-    "cmake.sourceDirectory": "/home/hiko/kyopro/ac-library/test/benchmark"
+    "cmake.sourceDirectory": "/home/hiko/kyopro/ac-library/test/benchmark",
+    "C_Cpp.errorSquiggles": "disabled"
 }
