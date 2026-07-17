@@ -96,5 +96,27 @@
         "the first problem": "cpp"
     },
     "cmake.sourceDirectory": "/home/hiko/kyopro/ac-library/test/benchmark",
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "enabled",
+    "files.watcherExclude": {
+        "**/.git/**": true,
+        "**/*.out": true,
+        "ac-library/test/**": true,
+        "ac-library/document_en/**": true,
+        "ac-library/document_ja/**": true
+    },
+    "search.exclude": {
+        "**/*.out": true,
+        "ac-library/test/**": true,
+        "ac-library/document_en/**": true,
+        "ac-library/document_ja/**": true
+    },
+    "files.exclude": {
+        "**/*.out": true
+    },
+    "C_Cpp.files.exclude": {
+        "**/*.out": true,
+        "ac-library/test/**": true,
+        "ac-library/document_en/**": true,
+        "ac-library/document_ja/**": true
+    }
 }

@@ -26,7 +26,7 @@ struct Matrix {
         for(size_t i = 0;i<n;i++) mat[i][i] = 1;
         return mat;
     }/*staticをつけることで、
-    Matrix<int> I = Matrix::I(n)と単位行列を一気に作成できる
+    Matrix<int> I = Matrix<ll>::I(n)と単位行列を一気に作成できる
     これを静的メンバ関数という。
     これを利用しない場合、空のmatrixを用意して
     単位行列化関数を適用しなければならず面倒

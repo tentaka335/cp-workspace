@@ -47,8 +47,29 @@ const ll dy[8] = {0,1,0,-1,1,-1,-1,1};
  
 void solve(){
  
+ll n;
+cin >> n;
+vll P(n);
+mint ans = 0;
+bool sorted = true;
+rep(i,n) {
+    cin >> P[i];
+    if(P[i]!=i+1) sorted = false;
+}
  
- 
+if(sorted) ans++;
+
+rep(i,n) {
+    if(P[i]!=i+1) break;
+    
+    ans+=n - (i+1);
+}
+
+
+cout << ans.val() << "\n";
+
+
+
  
  
  
@@ -58,7 +79,8 @@ int main() {
     ios_base::sync_with_stdio(false);
     
     
-    
- solve();
+ll t;
+cin >> t; 
+rep(ti,t) solve();
     return 0;
 }
