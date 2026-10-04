@@ -5,7 +5,7 @@
 
 #include <bits/stdc++.h>
 #include <atcoder/all>
-#include "my-library/Matrix.hpp"
+#include "my-library/miler-rabin.hpp"
 using namespace std;
 using ll = long long;
 using ull = unsigned long long;
@@ -42,40 +42,16 @@ const ll dy[8] = {0,1,0,-1,1,-1,-1,1};
  
  
  
- 
+
  
  
  
 void solve(){
-    ll n;
-    cin >> n;
-
-    Matrix<ll> I = Matrix<ll>::I(n);
-    Matrix<ll> A(n);
-    rep(i,n) {
-        rep(j,n) {
-            A[i][j] = n*i+j;
-        }
-    }
-
-    Matrix<ll> B = A;
-    if(B==A) YN;
-    
-
-
-
- 
- rep(i,n) {
-    rep(j,n) {
-        cout << A[i][j] << " ";
-    }
-    cout << "\n";
- }
-
  
  
- 
- 
+  string s = "00001";
+  ll a = stol(s);
+  cout << a << "\n";
 }
 int main() {
     cin.tie(nullptr);

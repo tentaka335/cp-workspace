@@ -42,32 +42,33 @@ const ll dy[8] = {0,1,0,-1,1,-1,-1,1};
  
  
  
- 
+ ll nC2(ll n) {
+    return n*(n-1)/2;
+ }
  
  
 void solve(){
  
  
+ vll o(2);
+ 
  ll n;
+ cin >> n;
+ vll S(n+9);
  string s;
- cin >> n >> s;
- vll sum(n+1);
- ll e = 1,o = 0;
- rep(i,n) {
-    sum[i+1] = sum[i] + ('1'- s[i]); 
- }
-
+ cin >> s;
+ s = 'a' + s;
+ o[0]++;
  nfor(i,1,n+1) {
-    if(sum[i]%2==0)  e++;
-    else o++;
+    S[i] = S[i-1];
+    if(s[i]=='0') S[i]++;
+    o[S[i]%2]++;
  }
- 
  ll ans = 0;
- ans+=e*(e-1)/2;
- ans+=o*(o-1)/2;
-
- cout << ans << "\n";
+ ans+=nC2(o[0])+nC2(o[1]);
  
+ 
+ cout << ans << "\n";
  
  
 }

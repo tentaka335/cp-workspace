@@ -1,44 +1,98 @@
+#ifndef ONLINE_JUDGE
+#define _GLIBCXX_DEBUG //[]で配列外参照をするとエラーにしてくれる。上下のやつがないとTLEになるので注意 ABC311Eのサンプル4みたいなデバック中のTLEは防げないので注意
+#endif
+
+
 #include <bits/stdc++.h>
 #include <atcoder/all>
 using namespace std;
 using ll = long long;
+using ull = unsigned long long;
 using llll = __int128_t;
 using namespace atcoder;
 using Pll = pair<ll,ll>;
+using vll = vector<ll>;
+using vvll = vector<vector<ll>>;
+using vvvll = vector<vector<vector<ll>>>;
 using Graph = vector<vector<ll>>;
-#define rep(i, n) for(ll i = 0; i < (n); i++)
+#define rep(i,n) for(ll i = 0; i < (n); ++i)
+#define rrep(i,n) for(ll i = 1; i <= (n); ++i)
+#define drep(i,n) for(ll i = (n)-1; i >= 0; --i)
+#define nfor(i,s,n) for(ll i=s;i<n;i++)//i=s,s+1...n-1 ノーマルfor 半開区間 
+#define dfor(i,s,n) for(ll i = (s)-1; i>=n;i--)//s-1スタートでnまで落ちる
 #define all(v) (v).begin(), (v).end()
+#define rall(v) (v).rbegin(), (v).rend()
 template<class T> bool chmin(T& a, T b) { if(a > b) { a = b; return true; } return false; }
 template<class T> bool chmax(T& a, T b) { if(a < b) { a = b; return true; } return false; }
 const ll inf = 1e18;
-const ll MOD = 1e9 + 7;
-const ll MOD2 = 998244353;
+const ll MOD = 998244353;
+const ll MOD2 = 1e9 + 7;
+using mint = modint998244353;
+//using mint = modint1000000007;
+//using mint = modint;
+#define YES cout<<"Yes"<<"\n";
+#define NO cout<<"No"<<"\n";
+#define YN {cout<<"Yes"<<"\n";}else{cout<<"No"<<"\n";}// if(a==b)YN;
+#define dame cout<<-1<<endl
+//mint::set_mod(m);//main関数下で扱う用
+const ll dx[8] = {1,0,-1,0,1,1,-1,-1};
+const ll dy[8] = {0,1,0,-1,1,-1,-1,1};
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+void solve(){
+ 
+ 
+ ll n;
+ cin >> n;
+ vll L(n+1),R(n+1),LS(n+1),RS(n+1);
+ nfor(i,1,n+1) {
+    cin >> L[i] >> R[i];
+    LS[i] = LS[i-1] + L[i];
+    RS[i] = RS[i-1] + R[i];
+ }
+ cerr << LS[n] << "  " <<RS[n];
+ ll sum = 0;
+ if(LS[n]<=0&&0<=RS[n]) {
+    YES;
+ }
+ else {
+    NO;
+    return ;
+ }
+ vll ans(n+1);
+ 
+ nfor(i,1,n+1) {
+    ll rsum = RS[n] - RS[i];
+    ll lsum = LS[n] - LS[i];
+    ll l = max(L[i],-sum-rsum);
+    ll r = min(R[i],-sum-lsum);
+   
+        ans[i] = l;
+        sum+=l;
+
+    
+    
+ }
+ cerr << sum << " ";
+ 
+ nfor(i,1,n+1) cout << ans[i] << " ";
+ cout << "\n";
+ 
+ 
+ 
+}
 int main() {
     cin.tie(nullptr);
     ios_base::sync_with_stdio(false);
     
-    ll n;
-    cin >> n;
-    vector<ll> L(n+1),R(n+1);
-    vector<ll> SL(n+2),SR(n+2);
-    for(ll i = 1;i<=n;i++) {
-        cin >> L[i] >> R[i];
-        SL[i] = SL[i-1] + L[i];
-        SR[i] = SR[i-1] + R[i];
-    }
-
-    if(!(SL[n]<=0&&0<=SR[n])) {
-        cout << "No" << "\n";
-        return 0;
-    }
     
-    cout << "Yes" << "\n";
-    ll asum = 0;
-    for(ll i = 1;i<=n;i++) {
-       ll a;
-       a = -L[n] + L[i] - asum;
-       cout << a << " ";
-       asum += a;
-    }
+    
+ solve();
     return 0;
 }

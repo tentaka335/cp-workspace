@@ -47,47 +47,30 @@ const ll dy[8] = {0,1,0,-1,1,-1,-1,1};
  
 void solve(){
  
+ll n;
+cin >> n;
+vll P(n);
+mint ans = 0;
+bool sorted = true;
+rep(i,n) {
+    cin >> P[i];
+    if(P[i]!=i+1) sorted = false;
+}
  
- ll n;
- cin >> n;
- string s;
- cin >> s;
- s = 'a'+ s;
- ll cnt = 0;
- ll sum = 0;
- nfor(i,1,n+1) {
-    if(s[i]=='o') {
-        cnt++;
-        sum = i - sum;
-    }
- }
+if(sorted) ans++;
 
- vll ans(n+9);
+rep(i,n) {
+    if(P[i]!=i+1) break;
+    
+    ans+=n - (i+1);
+}
 
- nfor(i,1,n+1) {
-    if(s[i]=='x') {
-        if(cnt%2==0) {
-            ans[sum+i] = i;
-        }
-        else {
-            ans[sum+1-i] = i;
-        }
-    }
-    else {
-        if(cnt%2==0) {
-            ans[sum+i] =i;
-            sum+=i;
-        }
-        else {
-            ans[sum+1-i] = i;
-            sum-=i;
-        }
-        cnt--;
-    }
- }
+
+cout << ans.val() << "\n";
+
+
+
  
-
- nfor(i,1,n+1) cout << ans[i] << " ";
  
  
 }
@@ -96,7 +79,8 @@ int main() {
     ios_base::sync_with_stdio(false);
     
     
-    
- solve();
+ll t;
+cin >> t; 
+rep(ti,t) solve();
     return 0;
 }

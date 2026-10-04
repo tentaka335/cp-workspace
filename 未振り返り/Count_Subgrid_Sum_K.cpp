@@ -37,32 +37,79 @@ using mint = modint998244353;
 //mint::set_mod(m);//main関数下で扱う用
 const ll dx[8] = {1,0,-1,0,1,1,-1,-1};
 const ll dy[8] = {0,1,0,-1,1,-1,-1,1};
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 void solve(){
-    ll h,w,k;
-    cin >> h >> w >> k;
-    vector<string> S(h);
-    rep(i,h) cin >> S[i];
+ 
+ 
+ ll h,w,k;
+ cin >> h >> w >> k;
+ 
+ vector<string> S(h+1);
+ nfor(i,1,h+1) {
+    string s;
+    cin >> s;
+    s = '0' + s;
+    S[i] = s;
+ }
+ vvll sum(h+9,vll(w+9));
+ nfor(i,1,h+1) {
+    nfor(j,1,w+1) {
+        sum[i][j] += sum[i][j-1] + (S[i][j] - '0');
+    }
+ }
 
-    
-    for(ll x = 1;x<=h;x++) {
-        for(ll ex = 1;ex<=h;ex++) {
+  nfor(i,1,h+1) {
+    nfor(j,1,w+1) {
+        sum[i][j] += sum[i-1][j];
+    }
+ }
+nfor(i,1,h+1) {
+   sum[i][w+1] = (ll)1e9;
+}
+
+
+ 
+ auto ressum= [&](ll a,ll b,ll c, ll d) {
+    return sum[c][d] - sum[c][b-1]-sum[a-1][d]+sum[a-1][b-1];
+ };
+ ll ans = 0;
+ nfor(a,1,h+1) {
+    nfor(c,a,h+1) {
+        nfor(l,1,w+1) {
+            //kを満たすr1を探す
+            ll ok1 = w+1;
+            ll ng1 = l - 1;
+            while(abs(ok1 - ng1)>1) {
+               ll mid = ng1+(ok1 - ng1)/2;
+               if(ressum(a,l,c,mid)>=k) ok1 = mid;
+               else ng1 = mid;
+            }
             
+
+            //k+1
+            ll ok2 = w+1;
+            ll ng2 = l - 1;
+            while(abs(ok2 - ng2)>1) {
+               ll mid = ng2+(ok2 - ng2)/2;
+               if(ressum(a,l,c,mid)>=k+1) ok2 = mid;
+               else ng2 = mid;
+            }
+            ans+=ok2 - ok1;
         }
     }
-    
-    auto area = [&](ll a,b,c,d) {
-        return 
-    }
+ }
    
-
-   
-
-        
-  
-    }
-
-    
-
+ cout << ans << "\n";
+ 
+ 
+}
 int main() {
     cin.tie(nullptr);
     ios_base::sync_with_stdio(false);

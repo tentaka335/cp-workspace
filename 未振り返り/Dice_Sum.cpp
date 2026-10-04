@@ -50,63 +50,27 @@ void solve(){
  
  ll n,m,k;
  cin >> n >> m >> k;
- vector<vector<mint>> dp(n+9,vector<mint>(2509,0));
- //dp[i][j] :=i番目まで決めたときの総和がjである通り数
+ 
+ vector<vector<mint>> dp(n+9,vector<mint>(k+9)); //dp[i][j]:=iの値を決めたとき、総和がjである場合の通り数
+ vector<vector<bool>> dp1(n+9,vector<bool>(k+9)); //dp[i][j]:=iの値を決めたとき、総和がjである場合の通り数
  dp[0][0] = 1;
+ 
  nfor(i,1,n+1) {
-    nfor(j,1,k+1) { 
-        nfor(a,1,m+1) {
-            if(j>=a) dp[i][j]+=dp[i-1][j-a];
-        }
+    nfor(j,1,k+1) {//総和がjのものを求める。
+        nfor(v,1,m+1) {//A[i]をvにしたとき
+            if(j-v>=0) dp[i][j] +=dp[i-1][j-v];
+        } 
     }
  }
  
- mint sum = 0;
- nfor(j,1,k+1) {
-    sum+=dp[n][j];
+ mint ans = 0;
+ nfor(i,1,k+1) {
+    ans+=dp[n][i];
  }
-
- cout << sum.val() << "\n";
  
-}
-
-void naive() {
-    ll n ,m,k;
-    cin >> n >> m >> k;
-
-
-    vll A;
-
-    mint ans = 0;
-
-    auto f = [&] (ll a,auto f)->void {
-        
-        
-        rep(i,A.size()) cerr << A[i] << " ";
-        cerr << "\n";
-
-        
-        if(a > n) {
-            ll sum = 0;
-         rep(i,n) sum+=A[i];
-         if(sum<=k) ans+=1;
-         return ;
-        }
-
-        nfor(i,1,m+1) {
-            A.push_back(i);
-            f(a+1,f);
-            A.pop_back();
-            
-        }
-
-
-        
-    };
-    
-
-    f(1,f);
-   cout << ans.val() << "\n";
+ cout << ans.val() << "\n";
+ 
+ 
 }
 int main() {
     cin.tie(nullptr);
@@ -114,6 +78,6 @@ int main() {
     
     
     
- naive();
+ solve();
     return 0;
 }

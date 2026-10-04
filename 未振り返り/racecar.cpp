@@ -39,7 +39,13 @@ const ll dx[8] = {1,0,-1,0,1,1,-1,-1};
 const ll dy[8] = {0,1,0,-1,1,-1,-1,1};
  
  
- 
+ bool is(string s) {
+    ll len = s.size();
+    rep(i,len/2) {
+        if(s[i]!=s[len - 1 - i]) return false;
+    }
+    return true;
+ }
  
  
  
@@ -47,30 +53,24 @@ const ll dy[8] = {0,1,0,-1,1,-1,-1,1};
  
 void solve(){
  
-ll n;
-cin >> n;
-vll P(n);
-mint ans = 0;
-bool sorted = true;
-rep(i,n) {
-    cin >> P[i];
-    if(P[i]!=i+1) sorted = false;
-}
  
-if(sorted) ans++;
+ ll n;
+ cin >> n;
+ vector<string> s(n);
+ rep(i,n) cin >> s[i];
 
-rep(i,n) {
-    if(P[i]!=i+1) break;
-    
-    ans+=n - (i+1);
-}
-
-
-cout << ans.val() << "\n";
-
-
-
+ rep(i,n) {
+    rep(j,n) {
+        if(i==j) continue;
+        if(is(s[i]+s[j])) {
+            YES;
+            return ;
+        }
+    }
+ }
  
+ NO;
+ return ;
  
  
 }
@@ -79,8 +79,7 @@ int main() {
     ios_base::sync_with_stdio(false);
     
     
-ll t;
-cin >> t; 
-rep(ti,t) solve();
+    
+ solve();
     return 0;
 }

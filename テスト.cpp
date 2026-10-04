@@ -38,15 +38,23 @@ using mint = modint998244353;
 const ll dx[8] = {1,0,-1,0,1,1,-1,-1};
 const ll dy[8] = {0,1,0,-1,1,-1,-1,1};
  
-#include "my-library/Matrix.hpp"
-#include "my-library/fastpow.hpp"
-
+ 
+ 
+ 
+ 
+ 
+ 
  
 void solve(){
  
-    cerr<< mypow(4,5) << " ";
-    cerr << modpow(4,5,2) << " ";
+ set<string> s = {"aaba","aac","acba","acc","bba","bc"};
+ for(auto a :s) {
+    cerr << a << "\n";
+ }
 }
+ 
+ 
+
 int main() {
     cin.tie(nullptr);
     ios_base::sync_with_stdio(false);

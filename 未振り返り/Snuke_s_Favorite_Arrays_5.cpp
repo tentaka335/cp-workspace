@@ -37,57 +37,56 @@ using mint = modint1000000007;
 //mint::set_mod(m);//main関数下で扱う用
 const ll dx[8] = {1,0,-1,0,1,1,-1,-1};
 const ll dy[8] = {0,1,0,-1,1,-1,-1,1};
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 void solve(){
-
-    ll n,q;
-    cin >> n >> q;
-
-    vector<mint> bitans(61);
-    vll X(q),Y(q),Z(q),W(q);
-    rep(i,q) {
-        cin >> X[i] >> Y[i] >> Z[i] >> W[i];
-        X[i]--;Y[i]--;Z[i]--;
-        //0idndexedにするか
-    }
-    rep(biti,60) {
-        
-        for(ll bit = 0;bit<((ll)1<<n);bit++) {
-            bool ok = true;
-            rep(qi,q) {//クエリを満たしているか
-                ll xbit = X[qi];
-                ll x = ((bit>>xbit)&1);
-                ll ybit = Y[qi];
-                ll y = ((bit>>ybit)&1);
-                ll zbit = Z[qi];
-                ll z = ((bit>>zbit)&1);
-                ll wbit = W[qi];
-                ll w = ((wbit>>biti)&1);
-                if(((x|y)|z)!=w) {
-                    ok = false;
-                    break;
-                }
+ 
+ 
+ ll n,q;
+ cin >> n >> q;
+ 
+ mint ans = 1;
+ vll x(q),y(q),z(q),w(q);
+ rep(i,q) {
+    cin >> x[i] >> y[i] >> z[i] >> w[i];
+    x[i]--;
+    y[i]--;
+    z[i]--;
+ }
+ rep(bit,60) {//各bitについての可能なパターン
+    ll cnt = 0;
+    for(ll i = 0;i<((ll)1<<n);i++) {
+        bool ok = true;
+        rep(qi,q) {
+            if(((((i>>x[qi])&1)|((i>>y[qi])&1)|((i>>z[qi])&1))!=((w[qi]>>bit)&1))) {
+                ok = false;
+                break;
             }
 
-            if(ok) bitans[biti]++;
             
         }
-        
+        if(ok) cnt++;
     }
-
-
-    mint ans = 1;
-    rep(i,60) {
-        ans *=bitans[i];
-    }
-
-    cout << ans.val() << "\n";
+    ans*=cnt;
+ }
+ 
+ 
+ cout << ans.val() << "\n";
+ 
+ 
 }
 int main() {
     cin.tie(nullptr);
     ios_base::sync_with_stdio(false);
     
     
-    //考察5分　実装20分
+    
  solve();
     return 0;
 }

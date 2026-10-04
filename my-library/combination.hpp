@@ -1,24 +1,7 @@
-#include <bits/stdc++.h>
-#include <atcoder/all>
-using namespace std;
-using ll = long long;
-using llll = __int128_t;
-using namespace atcoder;
-using Pll = pair<ll,ll>;
-using vll = vector<ll>;
-using vvll = vector<vector<ll>>;
-using Graph = vector<vector<ll>>;
-#define rep(i, n) for(ll i = 0; i < (n); i++)
-#define all(v) (v).begin(), (v).end()
-template<class T> bool chmin(T& a, T b) { if(a > b) { a = b; return true; } return false; }
-template<class T> bool chmax(T& a, T b) { if(a < b) { a = b; return true; } return false; }
-const ll inf = 1e18;
- ll MOD ;
-const ll MOD2 = 998244353;
-const ll dx[8] = {1,-1,0,0,1,-1,1,-1};
-const ll dx[8] = {0,0,1,-1,-1,1,-1,1};
+#include <iostream>
+#include <vector>
 
-
+const long long MOD = 998244353;
 //---前計算O(n) クエリ(1)  --- 0<=n<=10^7程度まで可能
 
 vector<long long> fac,finv,inv;//fac[i] = i!,finv[i] = (i)!^-1,inv[i] = i^-1
@@ -48,7 +31,7 @@ void nCkinit( long long n) {
 }
 
 
-// ---前計算o(1) クエリO(k)-----
+// ---前計算O(k) クエリO(k)-----
 //固定のnに対し高速化できるようにしたい
 
 vector<long long> finv2,inv2;
@@ -60,7 +43,7 @@ void nCk2init( long long k) {
     finv2[0] = finv2[1] = 1;
     inv2[1] = 1;
     for( long long i = 2;i<=k;i++) {
-        inv[i]=MOD-inv[MOD%i]*(MOD/i)%MOD;
+        inv2[i]=MOD-inv2[MOD%i]*(MOD/i)%MOD;
          finv2[i]=finv2[i-1]*inv2[i]%MOD;
     }
     return ;
@@ -85,7 +68,7 @@ void nCk2init( long long k) {
 
 
 int main () {
-    ll t;
+    long long t;
     cin >> t >> MOD;
     nCkinit(10000009);
     rep(ti,t) {
